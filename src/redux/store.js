@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 
 const subreducers = {
   tables: tablesReducer,
-  status: tableStatusReducer
+  tableStatus: tableStatusReducer
 }
 
 const reducer = combineReducers(subreducers);

@@ -2,7 +2,7 @@ const initialState = {
   tables: [
   ],
 
-  status: [
+  tableStatus: [
 
   ],
 };

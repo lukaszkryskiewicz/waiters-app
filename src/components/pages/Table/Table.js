@@ -1,14 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getTableById } from "../../../redux/tablesRedux";
+import TableForm from "../../features/TableForm/TableForm";
 
 const Table = () => {
   const { id } = useParams();
-  const table = useSelector(getTableById(id))
+  const table = useSelector(state => getTableById(state, id))
+
+  console.log(table)
+
 
   return (
     <div>
-      <h1>Table {table.id}</h1>
+      <TableForm id={id} table={table} />
     </div>
 
   )
