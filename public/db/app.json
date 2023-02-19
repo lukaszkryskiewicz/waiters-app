@@ -2,17 +2,17 @@
   "tables": [
     {
       "id": "1",
-      "status": "busy",
+      "status": "cleaning",
       "peopleAmount": 3,
       "maxPeopleAmount": 4,
       "bill": 45
     },
     {
       "id": "2",
-      "status": "free",
-      "peopleAmount": 3,
+      "status": "busy",
+      "peopleAmount": 2,
       "maxPeopleAmount": 4,
-      "bill": 45
+      "bill": 100
     },
     {
       "id": "3",

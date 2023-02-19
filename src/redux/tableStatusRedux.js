@@ -13,7 +13,6 @@ export const fetchStatus = () => {
   return (dispatch) => {
     fetch('http://localhost:3131/api/tableStatus')
       .then(res => {
-        console.log(res.status)
         if (res.status === 200) {
           return res.json()
             .then(statusList => dispatch(updateStatus(statusList)))
