@@ -10,9 +10,6 @@ const Table = () => {
 
   if (!table) return <Navigate to="/" />
 
-  console.log(table)
-
-
   return (
     <div>
       <TableForm id={id} table={table} />

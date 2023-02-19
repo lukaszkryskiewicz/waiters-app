@@ -10,11 +10,9 @@ import { removeTableRequest } from "../../../redux/tablesRedux";
 const Tables = () => {
   const tables = useSelector(getAllTables)
   const [tableId, setTableId] = useState(0)
-  //const [show, setShow] = useState(false)
   const dispatch = useDispatch();
 
   const handleClick = (id) => setTableId(id);
-  console.log(tableId)
   const handleClose = () => setTableId(0)
 
   const handleDelete = () => {

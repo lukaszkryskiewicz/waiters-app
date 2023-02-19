@@ -1,6 +1,5 @@
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
-//import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { getStatusList } from "../../../redux/tableStatusRedux";
 import { updateTableInfoRequest } from "../../../redux/tablesRedux";
@@ -10,7 +9,6 @@ const TableForm = ({ id, table }) => {
   const statusList = useSelector(getStatusList)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
   const [status, setStatus] = useState(table.status)
   const [peopleAmount, setPeopleAmount] = useState(table.peopleAmount)
@@ -22,8 +20,6 @@ const TableForm = ({ id, table }) => {
   if (maxPeopleAmount < 0) setMaxPeopleAmount(0);
   if (maxPeopleAmount > 10) setPeopleAmount(10);
   if (peopleAmount > maxPeopleAmount) setPeopleAmount(maxPeopleAmount)
-
-  console.log(status, peopleAmount, maxPeopleAmount, bill)
 
   const updatedTableInfo = {
     id: id,

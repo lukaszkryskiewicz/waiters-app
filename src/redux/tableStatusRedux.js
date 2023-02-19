@@ -1,3 +1,5 @@
+import { API_URL } from "../config";
+
 //selectors
 export const getStatusList = state => state.tableStatus;
 
@@ -11,7 +13,7 @@ const UPDATE_STATUS = createActionName('UPDATE_STATUS')
 export const updateStatus = payload => ({ type: UPDATE_STATUS, payload });
 export const fetchStatus = () => {
   return (dispatch) => {
-    fetch('http://localhost:3131/api/tableStatus')
+    fetch(API_URL + '/tableStatus')
       .then(res => {
         if (res.status === 200) {
           return res.json()

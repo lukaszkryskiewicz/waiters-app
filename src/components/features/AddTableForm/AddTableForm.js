@@ -1,6 +1,5 @@
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { useState } from "react";
-//import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { getStatusList } from "../../../redux/tableStatusRedux";
 import { addTableRequest, getAllTables, } from "../../../redux/tablesRedux";
