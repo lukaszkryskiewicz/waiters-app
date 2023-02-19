@@ -24,6 +24,10 @@ const AddTableForm = () => {
   const [id, setId] = useState(freeTablesNumberArr[0])
 
 
+  if (peopleAmount < 0) setPeopleAmount(0);
+  if (peopleAmount > 10) setPeopleAmount(10);
+
+
   const newTableInfo = {
     id: '' + id,
     status: status,
