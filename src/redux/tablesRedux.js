@@ -6,12 +6,18 @@ export const getTableById = ({ tables }, id) => tables.find(table => table.id ==
 const createActionName = actionName => `app/posts/${actionName}`;
 const UPDATE_TABLES = createActionName('UPDATE_TABLES')
 const UPDATE_TABLE_INFO = createActionName('UPDATE_TABLE_INFO')
+const ADD_TABLE = createActionName('ADD_TABLE')
+const REMOVE_TABLE = createActionName('REMOVE_TABLE')
 
 
 
 // action creators
 export const updateTables = payload => ({ type: UPDATE_TABLES, payload });
 export const updateTableInfo = payload => ({ type: UPDATE_TABLE_INFO, payload });
+export const addTable = payload => ({ type: ADD_TABLE, payload })
+export const removeTable = payload => ({ type: REMOVE_TABLE, payload })
+
+
 export const fetchTables = () => {
   return (dispatch) => {
     fetch('http://localhost:3131/api/tables')
@@ -24,27 +30,59 @@ export const fetchTables = () => {
   }
 };
 
-export const updateTableInfoRequest = (newTableInfo) => {
+export const updateTableInfoRequest = (updatedTableInfo) => {
   return (dispatch) => {
-    console.log(newTableInfo)
     const options = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id: newTableInfo.id,
-        status: newTableInfo.status,
-        peopleAmount: parseInt(newTableInfo.peopleAmount),
-        maxPeopleAmount: parseInt(newTableInfo.maxPeopleAmount),
-        bill: parseInt(newTableInfo.bill)
+        id: updatedTableInfo.id,
+        status: updatedTableInfo.status,
+        peopleAmount: parseInt(updatedTableInfo.peopleAmount),
+        maxPeopleAmount: parseInt(updatedTableInfo.maxPeopleAmount),
+        bill: parseInt(updatedTableInfo.bill)
       }),
     };
 
-    fetch('http://localhost:3131/api/tables/' + newTableInfo.id, options)
-      .then(() => dispatch(updateTableInfo(newTableInfo)))
+    fetch('http://localhost:3131/api/tables/' + updatedTableInfo.id, options)
+      .then(() => dispatch(updateTableInfo(updatedTableInfo)))
   }
 }
+
+export const addTableRequest = (newTableInfo) => {
+  return (dispatch) => {
+    console.log(newTableInfo)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newTableInfo),
+    };
+
+    fetch('http://localhost:3131/api/tables/', options)
+      .then(() => dispatch(addTable(newTableInfo)))
+  }
+}
+
+export const removeTableRequest = (tableId) => {
+  return (dispatch) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      // body: JSON.stringify(newTableInfo),
+    };
+
+    fetch('http://localhost:3131/api/tables/' + tableId, options)
+      .then(() => dispatch(removeTable(tableId)))
+  }
+}
+
+
 
 
 
@@ -54,6 +92,10 @@ const tablesReducer = (statePart = [], action) => {
       return [...action.payload]
     case UPDATE_TABLE_INFO:
       return statePart.map(table => table.id === action.payload.id ? { ...table, ...action.payload } : table)
+    case ADD_TABLE:
+      return [...statePart, { ...action.payload }]
+    case REMOVE_TABLE:
+      return [statePart.filter(table => table.id !== action.payload)]
     default:
       return statePart;
   };
