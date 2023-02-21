@@ -41,6 +41,13 @@
       "peopleAmount": 10,
       "maxPeopleAmount": 10,
       "bill": 0
+    },
+    {
+      "id": "7",
+      "status": "free",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 0,
+      "bill": 0
     }
   ],
   "tableStatus": [

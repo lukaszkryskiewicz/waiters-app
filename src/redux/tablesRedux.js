@@ -65,6 +65,7 @@ export const addTableRequest = (newTableInfo) => {
       body: JSON.stringify(newTableInfo),
     };
 
+
     fetch(API_URL + '/tables', options)
       .then(() => dispatch(addTable(newTableInfo)))
   }
@@ -81,7 +82,9 @@ export const removeTableRequest = (tableId) => {
     };
 
     fetch(API_URL + '/tables/' + tableId, options)
-      .then(() => dispatch(removeTable(tableId)))
+      .then(() => {
+        dispatch(removeTable(tableId))
+      })
   }
 }
 

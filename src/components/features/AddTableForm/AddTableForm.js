@@ -29,7 +29,7 @@ const AddTableForm = () => {
 
 
   const newTableInfo = {
-    id: '' + id,
+    id: id.toString(),
     status: status,
     peopleAmount: peopleAmount,
     maxPeopleAmount: peopleAmount,
@@ -38,7 +38,6 @@ const AddTableForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(newTableInfo)
     dispatch(addTableRequest(newTableInfo))
     navigate("/");
   }
@@ -52,7 +51,6 @@ const AddTableForm = () => {
         </Form.Label>
         <Col sm={2}>
           <Form.Select value={id} name={"id"} onChange={(e) => setId(e.target.value)}>
-            <option>Select table number...</option>
             {freeTablesNumberArr.map(tableNumber => <option key={tableNumber}>{tableNumber}</option>)}
           </Form.Select>
         </Col>

@@ -1,6 +1,6 @@
 import { Row, Col, Button, Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllTables } from "../../../redux/tablesRedux";
 import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import { useState } from "react";
@@ -11,6 +11,7 @@ const Tables = () => {
   const tables = useSelector(getAllTables)
   const [tableId, setTableId] = useState(0)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClick = (id) => setTableId(id);
   const handleClose = () => setTableId(0)
@@ -18,7 +19,10 @@ const Tables = () => {
   const handleDelete = () => {
     dispatch(removeTableRequest(tableId))
     setTableId(0)
-  }
+    navigate("/")
+  };
+
+  if (tables.length === 0) return 'There are no tables'
 
   return (
     <Row>

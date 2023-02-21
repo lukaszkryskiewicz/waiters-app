@@ -18,7 +18,7 @@ const TableForm = ({ id, table }) => {
   if (peopleAmount < 0) setPeopleAmount(0);
   if (peopleAmount > 10) setPeopleAmount(10);
   if (maxPeopleAmount < 0) setMaxPeopleAmount(0);
-  if (maxPeopleAmount > 10) setPeopleAmount(10);
+  if (maxPeopleAmount > 10) setMaxPeopleAmount(10);
   if (peopleAmount > maxPeopleAmount) setPeopleAmount(maxPeopleAmount)
 
   const updatedTableInfo = {
